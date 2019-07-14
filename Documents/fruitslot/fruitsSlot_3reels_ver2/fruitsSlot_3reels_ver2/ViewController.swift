@@ -31,6 +31,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var timer2:Timer = Timer()
     var timer3:Timer = Timer()
     
+    var numOfCompos:Int = 10;
+    
     let compos = [["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"], ["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"], ["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"]]
     
     var unionCompos = [["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"], ["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"], ["🍓", "🍊", "🍎", "🍒", "🍍", "🍉", "🍇", "🍑", "🥝", "🍏"]]
@@ -55,9 +57,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         result.text = "GOOD LUCK"
         
-        reel1Element = Int(arc4random()%10)
-        reel2Element = Int(arc4random()%10)
-        reel3Element = Int(arc4random()%10)
+        reel1Element = Int(Int(arc4random())%numOfCompos)
+        reel2Element = Int(Int(arc4random())%numOfCompos)
+        reel3Element = Int(Int(arc4random())%numOfCompos)
         
         self.timer1 = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(reel1Stop), userInfo: nil, repeats: true)
         
@@ -200,13 +202,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         //選択された項目が変更しないように微調整しながらしれっと真ん中辺りに戻す
         switch num {
         case 0:
-            reel1.selectRow(row%10+base10, inComponent: 0, animated: false)
+            reel1.selectRow(row%numOfCompos+base10, inComponent: 0, animated: false)
             break
         case 1:
-            reel2.selectRow(row%10+base10, inComponent: 0, animated: false)
+            reel2.selectRow(row%numOfCompos+base10, inComponent: 0, animated: false)
             break
         case 2:
-            reel3.selectRow(row%10+base10, inComponent: 0, animated: false)
+            reel3.selectRow(row%numOfCompos+base10, inComponent: 0, animated: false)
             break
         default: break
         }
